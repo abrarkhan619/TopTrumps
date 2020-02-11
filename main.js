@@ -21,16 +21,16 @@ class TopTrumps {
 }
 
 const fullDeck = [
-    ronaldo = new TopTrumps("ronaldo", "Cristiano Ronaldo", 90),  //card1
-    messi = new TopTrumps("messi", "Lionel Messi", 87), //card2
-    rashford = new TopTrumps("rashford", "Marcus Rashford", 92), //card3
-    neymar = new TopTrumps("neymar", "Neymar Jr", 91), //card4
-    pogba = new TopTrumps("pogba", "Paul Pogba", 74), //card5
-    mbappe = new TopTrumps("mbappe", "Mbappe", 96), //card6
-    vanDijk = new TopTrumps("vanDijk", "Van Dijk", 77), //card7
-    moSalah = new TopTrumps("moSalah", "Mo Salah", 93), //card8
+    ronaldo = new TopTrumps("ronaldo", "Cristiano Ronaldo", 90),  //card1 90
+    messi = new TopTrumps("messi", "Lionel Messi", 87), //card2 87
+    rashford = new TopTrumps("rashford", "Marcus Rashford", 90), //card3 92
+    neymar = new TopTrumps("neymar", "Neymar Jr", 91), //card4 91
+    pogba = new TopTrumps("pogba", "Paul Pogba", 90), //card5 74
+    mbappe = new TopTrumps("mbappe", "Mbappe", 90), //card6 96
+    dembele = new TopTrumps("dembele", "Dembele", 93), //card7 93
+    sancho = new TopTrumps("sancho", "Jadon Sancho", 88), //card8
     dybala = new TopTrumps("dybala", "Dybala", 83), //card9
-    dJames = new TopTrumps("dJames", "Daniel James", 94), //card10
+    dJames = new TopTrumps("dJames", "Daniel James", 90), //card10 94
 ]
 
 let arrayShuffle = function(arr) {
@@ -51,6 +51,7 @@ let shuffledDeck = arrayShuffle(fullDeck);
 
 const deckOne = shuffledDeck.splice(0, 5);
 const deckTwo = shuffledDeck
+let holdingDeck = []
 // console.log("I am the first deck");
 // console.log(deckOne)
 // console.log("I am the second deck");
@@ -62,22 +63,38 @@ const compareDecks = () => {
         let tempDeck = deckTwo.shift;
         deckTwo.push(firstElement);
         deckTwo.push(tempDeck);
-    } else {
+        deckTwo.push(holdingDeck);
+        console.log(deckOne)
+        console.log(deckTwo)
+        console.log(holdingDeck)
+    } else if (deckOne[0].pace > deckTwo[0].pace) {
         let firstElement = deckTwo.shift();
         let tempDeck = deckOne.shift();
         deckOne.push(firstElement);
         deckOne.push(tempDeck);
+        deckOne.push(holdingDeck)
+        console.log(deckOne)
+        console.log(deckTwo)
+        console.log(holdingDeck)
+    } else {
+        let deckOneCard = deckOne.shift();
+        let deckTwoCard = deckTwo.shift();
+        holdingDeck.push(deckOneCard)
+        holdingDeck.push(deckTwoCard)
+        console.log(deckOne)
+        console.log(deckTwo)
+        console.log(holdingDeck)
     }
 }
 
-console.log(deckOne);
-console.log(deckTwo);
-compareDecks();
-console.log("deck after comparison")
-console.log(deckOne.length)
-console.log(deckTwo.length)
-console.log(deckOne);
-console.log(deckTwo);
+// console.log(deckOne);
+// console.log(deckTwo);
+// compareDecks();
+// console.log("deck after comparison")
+// console.log(deckOne.length)
+// console.log(deckTwo.length)
+// console.log(deckOne);
+// console.log(deckTwo);
 // compareDecks();
 // console.log("deck after comparison")
 // console.log(deckOne.length)
@@ -87,9 +104,13 @@ console.log(deckTwo);
 
 firstCardButton.addEventListener("click", () =>{
     compareDecks()
+    // console.log(deckOne[0])
+    // console.log(deckOne)
+    // console.log(deckTwo[0])
+    // console.log(deckTwo)
 
     yourCardImg.src = `images/${deckOne[0].id}.png`;
     computerCardImg.src = `images/${deckTwo[0].id}.png`;
-    console.log(`images/${deckOne[0].id}.png`)
+    // console.log(`images/${deckOne[0].id}.png`)
 })
 
